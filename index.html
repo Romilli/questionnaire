@@ -11,7 +11,7 @@
       background: #f5fff5;
       color: #2d4d2d;
     }
-    h1, h2, h3 {
+    h1, h2, h3, h4 {
       color: #2f6f3f;
       text-shadow: 1px 1px 0 #cfeccc;
     }
@@ -84,7 +84,7 @@
       情報観光ルート班では、みなさんが入力した嗜好に沿った富山県の観光ルートを自動生成するアルゴリズムの研究を行っています。<br>
       そこで、本アンケートでは「提示された観光ルートを実際に回りたいと思うか」を評価していただき、
       アルゴリズム改善のためのデータとして活用させていただきます。<br>
-      ※回答は研究目的のみで使用し、個人情報は収集しません。回答にかかる目安時間は３〜５分です。
+      ※回答は研究目的のみで使用し、個人情報は収集しません。回答にかかる目安時間は３〜５分です。ルートは３度生成されるので３度ご確認ください。
       <br><u>あなたの回答で１つの探求が救われます。</u>
     </p>
   </section>
@@ -229,10 +229,10 @@
 
   <!-- 2. 試行ごとのタイムテーブル表示 -->
   <section id="trial-section" class="hidden">
-    <h2>② 生成したルートの確認（３回）</h2>
+    <h2>② 生成したルートの確認（３回行います）</h2>
     <p>嗜好に沿って生成したルートが以下になります。実際に行きたいかの満足度を選択してください。<br>※すべて車での移動を想定しています。始点・終点は店内には入らないため、嗜好に沿った内容ではありません。</p>
 
-    <h3 id="trial-title">試行 １ / ３</h3>
+    <h3 id="trial-title">生成 1回目</h3>
 
     <div id="timetable-area">
       <!-- サンプルの固定テーブルを置く -->
@@ -254,8 +254,7 @@
       </label>
     </div>
     
-    <br>
-
+    <h4 id="trial-title-under">生成 1回目</h4>
     <button class="btn" id="next-btn" onclick="nextTrial()">次へ</button>
   </section>
 
@@ -445,7 +444,7 @@
       Number(document.getElementById('pref8').value),
       Number(document.getElementById('pref9').value)
     ];
-  
+    
     if (pref.some(v => v === -1)) {
       alert('すべての項目を選択してください');
       return;
@@ -587,7 +586,8 @@
 }
 
   function updateTrialTitle() {
-    document.getElementById('trial-title').textContent = `試行 ${trialIndex} / 3`;
+    document.getElementById('trial-title').textContent = `生成 ${trialIndex}回目`;
+    document.getElementById('trial-title-under').textContent = `生成 ${trialIndex}回目`;
     const nextBtn = document.getElementById('next-btn');
     if (trialIndex === 3) {
       nextBtn.textContent = '回答結果を送信';
@@ -954,7 +954,6 @@
     return new Promise(async resolve => {
       let best = [];
       let evalResult = null;
-      // 非同期で描画の機会を与える
     
       for (let i = 0; i < repeat_num; i++) {
         const cand = await simulatedAnnealing(P, unit);
