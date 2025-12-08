@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>情報観光ルート班 探求アンケート</title>
+  <title>情報観光ルート班 探究アンケート</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -76,7 +76,7 @@
   </style>
 </head>
 <body>
-  <h1>情報観光ルート班 探求アンケート</h1>
+  <h1>情報観光ルート班 探究アンケート</h1>
 
   <section id="intro-section">
     <h2>アンケートの目的</h2>
@@ -85,7 +85,7 @@
       そこで、本アンケートでは「提示された観光ルートを実際に回りたいと思うか」を評価していただき、
       アルゴリズム改善のためのデータとして活用させていただきます。<br>
       ※回答は研究目的のみで使用し、個人情報は収集しません。回答にかかる目安時間は３〜５分です。ルートは３度生成されるので３度ご確認ください。
-      <br><u>あなたの回答で１つの探求が救われます。</u>
+      <br><u>あなたの回答で１つの探究が救われます。</u>
     </p>
   </section>
 
@@ -485,6 +485,9 @@
   
     scores.push(score);
     document.getElementById('score-input').value = '';
+    
+    // 上に戻す
+    window.scrollTo({ top: 0, behavior: "smooth" });
   
     trialIndex++;
   
